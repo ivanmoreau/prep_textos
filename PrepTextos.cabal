@@ -36,7 +36,7 @@ common common-options
 library
   import:              common-options
   hs-source-dirs:      src
-  exposed-modules:     PrepTextos, EmojiP
+  exposed-modules:     PrepTextos, EmojiP, Stopwords
   build-depends:       parsec,
                        text,
                        emojis

@@ -1,9 +1,15 @@
 module Main (main) where
 
-import PrepTextos (someFunc)
+import PrepTextos (parseWith, parseWithoutStopWords, parse)
 import Data.Text.IO (writeFile)
 
 main :: IO ()
-main = someFunc "Tweets.txt" >>= \y -> case y of
-    Left err -> print err
-    Right xs -> Data.Text.IO.writeFile "newTweets.txt" xs
+main = do
+    new <- parseWith parse "Tweets.txt"
+    newStop <- parseWith parseWithoutStopWords "Tweets.txt"
+    case new of
+        Left err -> print err
+        Right xs -> Data.Text.IO.writeFile "newTweets.txt" xs
+    case newStop of
+        Left err -> print err
+        Right xs -> Data.Text.IO.writeFile "newTweetsWithoutSW.txt" xs
