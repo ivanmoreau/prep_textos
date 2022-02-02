@@ -37,10 +37,12 @@ pmarks = oneOf "()¿?!¡;:,.'\'\"[]{}-_@#<>«»&…\\/—►| " >> return (pack
 
 -- http://t.co/NgmDgQFDf
 link :: Parser Text
-link = (try (string "http://") <|> string "https://") >> many1 (alphaNum <|> oneOf "_/:?#.-") >> return (pack " ") 
+link = (try (string "http://") <|> string "https://") 
+       >> many1 (alphaNum <|> oneOf "_/:?#.-") >> return (pack " ") 
 
 word :: Parser Text
-word = letter >>= \c -> many (letter <|> char (head "'")) >>= \x -> return (toLower (pack (c:x)))
+word = letter >>= \c -> many (letter <|> char (head "'")) >>= \x 
+       -> return (toLower (pack (c:x)))
 
 wordWS :: Parser Text
 wordWS = letter >>= \c -> many (letter <|> char (head "'")) >>= \x -> 
@@ -64,10 +66,16 @@ per = option "" (string "-") >>= \a ->
                   (string "%" >> return (pack (a ++ b ++ d ++ e)))
 
 parse :: Parser Text
-parse =  ( many (try per <|> try link <|> spaces <|> try user <|> try tweeted <|> hashtag <|> try parseEmoji <|> word <|> pmarks <|> numbers <|> newline ) ) >>= \x -> return (replaceSpaces (Data.Text.concat x))
+parse =  ( many (try per <|> try link <|> spaces <|> try user 
+       <|> try tweeted <|> hashtag <|> try parseEmoji <|> word <|> pmarks 
+       <|> numbers <|> newline ) ) 
+       >>= \x -> return (replaceSpaces (Data.Text.concat x))
 
 parseWithoutStopWords :: Parser Text
-parseWithoutStopWords =  ( many (try per <|> try link <|> spaces <|> try user <|> try tweeted <|> hashtag <|> try parseEmoji <|> wordWS <|> pmarks <|> numbers <|> newline ) ) >>= \x -> return (replaceSpaces (Data.Text.concat x))
+parseWithoutStopWords =  ( many (try per <|> try link <|> spaces <|> try user 
+       <|> try tweeted <|> hashtag <|> try parseEmoji <|> wordWS <|> pmarks 
+       <|> numbers <|> newline ) ) 
+       >>= \x -> return (replaceSpaces (Data.Text.concat x))
 
 replaceSpaces :: Text -> Text
 replaceSpaces l = rrep 10 l
@@ -75,7 +83,6 @@ replaceSpaces l = rrep 10 l
 rrep :: Int -> Text -> Text
 rrep 1 l = l
 rrep n l = rrep (n - 1) (replace (pack (replicate n ' ')) (pack " ") l)
-
 
 parseWith :: Parser Text
                -> FilePath -> IO (Either Text.Parsec.Error.ParseError Text)

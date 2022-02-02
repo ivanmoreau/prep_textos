@@ -1,7 +1,8 @@
 {- |
 SPDX-License-Identifier: CC-BY-NC-4.0
 
-Spanish Stopwords by Alireza Savand. See https://github.com/Alir3z4/stop-words
+Spanish Stopwords by Alireza Savand. See
+ https://github.com/Alir3z4/stop-words
 -}
 
 module Stopwords (stopwords) where

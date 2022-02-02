@@ -38,7 +38,8 @@ smiley = ( try (string ":-)") <|>
     try (string ":D" ) <|> try ( string "8-D") <|>
     try (string "8D" ) <|> try ( string "=D" )<|>
     try (string "=3" ) <|> try ( string "B^D" )<|>
-    try (string "c:" ) <|> try ( string "C:" )) >> return (toLower (pack " SMILEY "))
+    try (string "c:" ) <|> try ( string "C:" )) 
+    >> return (toLower (pack " SMILEY "))
 
 annoyed :: Parser Text
 annoyed = (try (string ":-/") <|>
@@ -60,7 +61,8 @@ tears_of_happiness = (try (string ":'-)") <|>
 
 
 joyful :: Parser Text
-joyful = (try (string "*-*") <|> try (string "*.*")) >> return (toLower (pack " JOYFUL ") )
+joyful = (try (string "*-*") <|> try (string "*.*")) 
+    >> return (toLower (pack " JOYFUL ") )
 
 music_note :: Parser Text
 music_note = try (string "♫") >> return (toLower (pack " MUSIC_NOTE ") )
@@ -71,10 +73,12 @@ check_mark = try (string "✔️") >> return (toLower (pack " CHECK_MARK ") )
 -- ❤️ ♡
 
 nervous :: Parser Text
-nervous = mcc (reverse ["xd", "Xd", "xdd", "xddd", "xdddd", "xddddd"]) " NERVOUS "
+nervous = mcc (reverse ["xd", "Xd", "xdd", "xddd", "xdddd", "xddddd"]) 
+    " NERVOUS "
 
 laughing :: Parser Text
-laughing = mcc (reverse ["xD", "xDd", "xDD", "xDDD", "xDDDD", "xDDDDD"]) " LAUGHING "
+laughing = mcc (reverse ["xD", "xDd", "xDD", "xDDD", "xDDDD", "xDDDDD"]) 
+    " LAUGHING "
 
 heart :: Parser Text
 heart = mcc ["❤️", "♡", "♥"] " HEART "
