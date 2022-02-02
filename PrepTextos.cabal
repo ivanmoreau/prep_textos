@@ -3,11 +3,11 @@ name:                PrepTextos
 version:             0.0.0.0
 synopsis:            See README for more info
 description:         See README for more info
-license:             MIT
+license:             GPL-3.0-only
 license-file:        LICENSE
-author:              Ivan Molina Rebolledo
-maintainer:          Ivan Molina Rebolledo <ivanmolinarebolledo@gmail.com>
-copyright:           2022 Ivan Molina Rebolledo
+author:              Iván Molina Rebolledo
+maintainer:          Iván Molina Rebolledo <ivanmolinarebolledo@gmail.com>
+copyright:           2022 Iván Molina Rebolledo
 build-type:          Simple
 extra-doc-files:     README.md
                      CHANGELOG.md

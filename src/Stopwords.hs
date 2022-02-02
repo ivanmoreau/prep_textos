@@ -4,9 +4,10 @@ SPDX-License-Identifier: CC-BY-NC-4.0
 Spanish Stopwords by Alireza Savand. See https://github.com/Alir3z4/stop-words
 -}
 
-module Stopwords where
+module Stopwords (stopwords) where
 
 
+stopwords :: [[Char]]
 stopwords = ["a",
     "actualmente",
     "adelante",

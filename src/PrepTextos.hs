@@ -1,6 +1,6 @@
 {- |
 Copyright: (c) 2022 Ivan Molina Rebolledo
-SPDX-License-Identifier: MIT
+SPDX-License-Identifier: GPL-3.0-only
 Maintainer: Ivan Molina Rebolledo <ivanmolinarebolledo@gmail.com>
 
 See README for more info
@@ -14,7 +14,7 @@ module PrepTextos
 
 import Data.Text (Text, pack, concat, replace, toLower, unpack)
 import EmojiP (parseEmoji)
-import Stopwords
+import Stopwords (stopwords)
 import Text.Parsec ((<|>), many, many1, option, optionMaybe, try)
 import Text.Parsec.Char (alphaNum, char, digit, letter, oneOf, string)
 import Text.Parsec.Text (Parser, parseFromFile)
@@ -37,7 +37,7 @@ pmarks = oneOf "()¿?!¡;:,.'\'\"[]{}-_@#<>«»&…\\/—►| " >> return (pack
 
 -- http://t.co/NgmDgQFDf
 link :: Parser Text
-link = (try (string "http://") <|> string "https://") >> many1 (alphaNum <|> oneOf "_/:?#.-") >> return (pack " $url ") 
+link = (try (string "http://") <|> string "https://") >> many1 (alphaNum <|> oneOf "_/:?#.-") >> return (pack " ") 
 
 word :: Parser Text
 word = letter >>= \c -> many (letter <|> char (head "'")) >>= \x -> return (toLower (pack (c:x)))
